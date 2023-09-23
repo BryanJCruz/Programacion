@@ -17,7 +17,7 @@ cursor.execute('''
 
 conn.commit()
 
-# Definir funciones para las opciones del menú
+# funciones para las opciones del menú , animaciones y limpiesa de pantalla
 def limpiar_pantalla():
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -43,15 +43,10 @@ def agregar_palabra():
         print("Palabra agregada correctamente.")
     except sqlite3.IntegrityError:
         print("La palabra ya existe en la base de datos.")
-
-# Completar la función con la lógica para agregar una nueva palabra y su significado a la base de datos
 def editar_palabra():
     palabra = input("Ingrese la palabra que desea editar: ")
-
-    # Verificar si la palabra existe
     cursor.execute('SELECT * FROM palabras WHERE palabra=?', (palabra,))
     row = cursor.fetchone()
-
     if row:
         nuevo_significado = input("Ingrese el nuevo significado de la palabra: ")
         cursor.execute('UPDATE palabras SET significado=? WHERE palabra=?', (nuevo_significado, palabra))
@@ -59,29 +54,19 @@ def editar_palabra():
         print("Palabra editada correctamente.")
     else:
         print("La palabra no existe en la base de datos.")
-
-# Completar la función con la lógica para editar el significado de una palabra existente
-
 def eliminar_palabra():
     palabra = input("Ingrese la palabra que desea eliminar: ")
-
-    # Verificar si la palabra existe
     cursor.execute('SELECT * FROM palabras WHERE palabra=?', (palabra,))
     row = cursor.fetchone()
-
     if row:
         cursor.execute('DELETE FROM palabras WHERE palabra=?', (palabra,))
         conn.commit()
         print("Palabra eliminada correctamente.")
     else:
         print("La palabra no existe en la base de datos.")
-
-# Completar la función con la lógica para eliminar una palabra de la base de datos
-
 def ver_listado_palabras():
     cursor.execute('SELECT * FROM palabras')
     palabras = cursor.fetchall()
-
     if palabras:
         limpiar_pantalla()
         print("\t\t\tListado de palabras y significados:")
@@ -93,9 +78,6 @@ def ver_listado_palabras():
         print("No hay palabras en la base de datos.")
         input("\n\n\t\t Precione ENTER tecla para continuar.....")
         animacion_carga()
-
-# Completar la función con la lógica para mostrar el listado de palabras y sus significados
-
 def buscar_significado():
     palabra = input("Ingrese la palabra que desea buscar: ")
 
@@ -108,8 +90,6 @@ def buscar_significado():
     else:
         print("La palabra no existe en la base de datos.")
         animacion_carga()
-
-# Completar la función con la lógica para buscar el significado de una palabra
 
 
 # Menú de opciones
