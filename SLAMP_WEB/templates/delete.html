@@ -1,0 +1,126 @@
+<!-- delete.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Palabra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #0ff; /* Cyan neon */
+            text-shadow: 0 0 10px #0ff; /* Agrega una sombra de texto cyan neon */
+        }
+
+        form {
+            width: 300px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 2px solid #555;
+            border-radius: 8px;
+            background-color: #333;
+            color: #fff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .select-container {
+            margin-bottom: 16px;
+        }
+
+        button.button-81-pushable {
+            cursor: pointer;
+            overflow: hidden;
+            border: none;
+            position: relative;
+            font-size: 16px;
+            padding: 12px 30px;
+            border-radius: 8px; /* Esquinas redondeadas */
+        }
+
+        .button-81-shadow,
+        .button-81-edge,
+        .button-81-front {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transition: all 0.3s ease;
+        }
+
+        .button-81-shadow {
+            background: rgba(0, 255, 255, 0.5); /* Cyan neon shadow */
+            z-index: -1;
+        }
+
+        .button-81-edge {
+            background: #333; /* Dark grey background */
+            z-index: 1;
+        }
+
+        .button-81-front {
+            background: #0ff; /* Cyan neon front */
+            color: #000; /* Texto negro */
+            z-index: 2;
+        }
+
+        .button-81-pushable:hover .button-81-front {
+            transform: translateY(-10px);
+        }
+
+        p a {
+            color: #0ff; /* Cyan neon link */
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Eliminar Palabra</h1>
+        <form method="post" action="{{ url_for('delete_word') }}" onsubmit="return confirm('¿Estás seguro de que quieres eliminar esta palabra?');">
+            <div class="select-container">
+                <select name="word_to_delete" id="word_to_delete">
+                    {% for word in words %}
+                        <option value="{{ word.id }}">{{ word.word }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="button-81-pushable">
+                <span class="button-81-shadow"></span>
+                <span class="button-81-edge"></span>
+                <span class="button-81-front text">Eliminar</span>
+            </button>
+        </form>
+        <p><a href="{{ url_for('home') }}">Volver al inicio</a></p>
+    </div>
+</body>
+</html>
+

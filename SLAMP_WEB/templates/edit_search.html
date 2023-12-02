@@ -1,0 +1,39 @@
+<!-- templates/edit_search.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Palabra para Editar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Editar Palabra Existente</h1>
+
+    <form method="POST" action="{{ url_for('edit_word') }}">
+        <label for="word_to_edit">Palabra a Editar:</label>
+        <input type="text" id="word_to_edit" name="word_to_edit" required>
+        <br>
+        <button type="submit">Buscar Palabra</button>
+    </form>
+
+    {% if existing_word %}
+        <form method="POST" action="{{ url_for('save_edit') }}">
+            <input type="hidden" name="existing_word_id" value="{{ existing_word.id }}">
+            <label for="existing_word">Palabra Existente:</label>
+            <input type="text" id="existing_word" name="existing_word" value="{{ existing_word.word }}" readonly>
+            <br>
+            <label for="new_word">Nueva Palabra:</label>
+            <input type="text" id="new_word" name="new_word" required>
+            <br>
+            <label for="new_meaning">Nuevo Significado:</label>
+            <textarea id="new_meaning" name="new_meaning" rows="4" required>{{ existing_word.meaning }}</textarea>
+            <br>
+            <button type="submit">Guardar Cambios</button>
+        </form>
+    {% else %}
+        <p>aqui es.</p>
+    {% endif }
+</body>
+</html>

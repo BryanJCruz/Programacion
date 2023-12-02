@@ -1,0 +1,98 @@
+<!-- templates/search.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Significado de Palabra</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #000;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        color: #0ff; /* Cyan neon */
+        text-shadow: 0 0 10px #0ff; /* Agrega una sombra de texto cyan neon */
+        text-align: center;
+        padding: 20px;
+    }
+
+    form {
+        padding: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #0ff; /* Cyan neon */
+        text-shadow: 0 0 5px #0ff; /* Agrega una sombra de texto cyan neon */
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 1s forwards;
+    }
+
+    select,
+    button {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+        border: 2px solid #555; /* Borde gris oscuro */
+        border-radius: 8px; /* Esquinas redondeadas */
+        background-color: #333; /* Fondo gris oscuro */
+        color: #fff; /* Texto blanco */
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Sombras de color cyan neon */
+    }
+
+    button {
+        cursor: pointer;
+        background-color: #333;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #2ecc71; /* Verde */
+        box-shadow: 0 0 var(--light-distance) rgba(0, 255, 255, 0.5);
+    }
+
+    .result {
+        margin-top: 20px;
+    }
+
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+ 
+</head>
+<body>
+    <h1>Buscar Significado de Palabra</h1>
+
+    <form method="POST" action="{{ url_for('search_word') }}">
+        <label for="selected_word">Selecciona una Palabra:</label>
+        <select name="selected_word" id="selected_word">
+            {% for word in words %}
+                <option value="{{ word.id }}">{{ word.word }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <button type="submit">Buscar Significado</button>
+    </form>
+
+    {% if meaning %}
+        <div class="result">
+            <h2>Significado:</h2>
+            <p>{{ meaning }}</p>
+        </div>
+    {% endif %}
+</body>
+</html>

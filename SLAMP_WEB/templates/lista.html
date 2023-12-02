@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Palabras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #0ff; /* Cyan neon */
+            text-shadow: 0 0 10px #0ff; /* Agrega una sombra de texto cyan neon */
+            text-align: center;
+            padding: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 16px;
+        }
+
+        strong {
+            color: #0ff; /* Cyan neon */
+        }
+
+        /* Puedes agregar más estilos según tus preferencias */
+
+    </style>
+</head>
+<body>
+    <h1>Lista de Palabras y Significados</h1>
+
+    <ul>
+        {% for word in words %}
+            <li><strong>{{ word.word }}</strong>: {{ word.meaning }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

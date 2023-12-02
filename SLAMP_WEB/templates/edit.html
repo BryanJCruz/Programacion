@@ -1,0 +1,123 @@
+<!-- templates/edit.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Palabra Existente</title>
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #0ff; /* Cyan neon */
+            text-shadow: 0 0 10px #0ff; /* Agrega una sombra de texto cyan neon */
+            text-align: center;
+            padding: 20px;
+        }
+
+        form {
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #0ff; /* Cyan neon */
+            text-shadow: 0 0 5px #0ff; /* Agrega una sombra de texto cyan neon */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 2px solid #555; /* Borde gris oscuro */
+            border-radius: 8px; /* Esquinas redondeadas */
+            background-color: #333; /* Fondo gris oscuro */
+            color: #fff; /* Texto blanco */
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Sombras de color cyan neon */
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        button.edit-button {
+            cursor: pointer;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Sombras de color cyan neon */
+        }
+
+        button.edit-button:hover {
+            background-color: #2ecc71; /* Verde */
+            box-shadow: 0 0 var(--light-distance) rgba(0, 255, 255, 0.5);
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 2px solid #555;
+            border-radius: 8px;
+            background-color: #333;
+            color: #fff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .select-container {
+            margin-bottom: 16px;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Editar Palabra Existente</h1>
+
+    {% if editing %}
+        <form method="post" action="{{ url_for('save_edit') }}">
+            <input type="hidden" name="existing_word_id" value="{{ existing_word.id }}">
+            <label for="new_word">Nueva Palabra:</label>
+            <input type="text" name="new_word" value="{{ existing_word.word }}" required>
+            <label for="new_meaning">Nuevo Significado:</label>
+            <textarea name="new_meaning" rows="4" required>{{ existing_word.meaning }}</textarea>
+            <button type="submit" class="edit-button">Guardar Cambios</button>
+        </form>
+    {% else %}
+        <form method="post" action="{{ url_for('edit_word') }}">
+            <div class="select-container">
+                <select name="word_to_edit" id="word_to_edit">
+                    {% for word in words %}
+                        <option value="{{ word.word }}">{{ word.word }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="edit-button">Editar</button>
+        </form>
+    {% endif %}
+</body>
+</html>

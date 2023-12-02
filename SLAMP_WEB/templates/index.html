@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        background-color: #000;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        position: relative; /* Establecer la posición relativa para que los elementos absolutos se posicionen correctamente */
+    }
+
+    h1 {
+        color: #0ff;
+        text-shadow: 0 0 10px #0ff;
+        text-align: center;
+        padding: 20px;
+    }
+
+    /* Agregamos estilos para B.Cruz en la esquina superior derecha */
+    .brand-bcruz {
+        position: absolute;
+        top: 10px; /* Ajusta según sea necesario */
+        right: 10px; /* Ajusta según sea necesario */
+        color: #0ff;
+    }
+
+    /* Agregamos estilos para UIP en la esquina inferior izquierda */
+    .brand-uip {
+        position: absolute;
+        bottom: 10px; /* Ajusta según sea necesario */
+        left: 10px; /* Ajusta según sea necesario */
+        color: #0ff;
+    }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #111;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        .sidebar h2 {
+            text-align: center;
+            color: #0ff;
+            text-shadow: 0 0 5px #0ff;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar ul li {
+            margin-top: 10px;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: fadeInSlide 0.5s forwards;
+        }
+        .sidebar ul li a {
+            color: #0ff;
+            text-decoration: none;
+        }
+        .sidebar ul li a:hover {
+            color: #0ff;
+            text-shadow: 0 0 5px #0ff;
+        }
+        @keyframes fadeInSlide {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="brand-bcruz">B.Cruz</div>
+    <div class="brand-uip">UIP</div>
+    <div class="container">
+        <div class="sidebar futuristic">
+            <h2>DICCIONARIO</h2>
+            <ul>
+                <li>
+                    <a href="{{ url_for('add_word') }}" role="button">
+                        <span class="text">Nueva palabra</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('edit_word') }}" role="button">
+                        <span class="text">Editar palabra</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('delete_word') }}" role="button">
+                        <span class="text">Eliminar palabra</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('list_words') }}"  role="button">
+                        <span class="text">Ver listado</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('search_word') }}" role="button">
+                        <span class="text">Buscar significado</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        const lis = document.querySelectorAll('.sidebar ul li');
+        lis.forEach((li, index) => {
+            li.style.animationDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+</html>

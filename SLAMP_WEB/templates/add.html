@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Palabra</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.header {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Animación para el h1 */
+.header h1 {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+}
+
+.content {
+    padding: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #0ff; /* Cambia el color del label a cyan neon */
+    text-shadow: 0 0 5px #0ff; /* Agrega una sombra de texto cyan neon */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    color: #0ff; /* Cambia el color del título a cyan neon */
+    text-shadow: 0 0 10px #0ff; /* Agrega una sombra de texto cyan neon */
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 2px solid #555; /* Borde gris oscuro */
+    border-radius: 8px; /* Esquinas redondeadas */
+    background-color: #333; /* Fondo gris oscuro */
+    color: #fff; /* Texto blanco */
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Sombras de color cyan neon */
+}
+
+textarea {
+    resize: none; /* Esto evita que el área de texto sea redimensionable */
+    height: 100px; /* Tamaño fijo de la altura del área de texto */
+}
+
+button {
+    cursor: pointer;
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Agrega un resplandor a input y textarea */
+input:focus,
+textarea:focus {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3);
+    outline: none; /* Evita el resplandor predeterminado en el foco */
+}
+
+:root {
+    --light-distance: 10px; /* Variable para ajustar la distancia del resplandor */
+}
+
+/* Agrega un resplandor ajustable a input y textarea */
+input,
+textarea {
+    transition: box-shadow 0.3s ease;
+}
+
+input:hover,
+textarea:hover {
+    box-shadow: 0 0 var(--light-distance) rgba(0, 255, 255, 0.5);
+}
+button {
+    cursor: pointer;
+    background-color: #333; /* Cambia el color del botón al fondo gris oscuro */
+    color: #fff; /* Texto blanco */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px; /* Esquinas redondeadas */
+    font-size: 16px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Sombras de color cyan neon */
+}
+
+button:hover {
+    background-color: #2ecc71; /* Cambia el color del botón al verde cuando se pasa el ratón sobre él */
+    box-shadow: 0 0 var(--light-distance) rgba(0, 255, 255, 0.5);
+}
+    </style>
+</head>
+<body>
+    <div class="container"> 
+        <div class="header"> 
+            <h1>Agregar Palabra</h1>
+        </div>
+        <div class="content"> 
+            <form method="POST" action="{{ url_for('add_word') }}">
+                <label for="word">Palabra:</label>
+                <input type="text" id="word" name="word" required>
+                <br>
+                <label for="meaning">Significado:</label>
+                <textarea id="meaning" name="meaning" rows="4" required></textarea>
+                <br>
+                <!-- Agregar la clase button-81-pushable al botón Save -->
+                <button type="submit">
+                    <span class="text">Save</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
