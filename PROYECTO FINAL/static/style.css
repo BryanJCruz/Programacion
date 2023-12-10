@@ -1,0 +1,193 @@
+/* style.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000000; /* Negro */
+    color: #ffffff;
+    margin: 0;
+}
+h1 {
+    color: #ffffff; /* Blanco */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* O la tipografía que desees */
+    text-shadow: 0 0 10px rgba(255, 51, 51, 0.8); /* Sombra neon roja */
+    animation: blink 0.5s infinite; /* Animación de parpadeo */
+    text-align: center; /* Centra el texto horizontalmente */
+}
+
+@keyframes blink {
+    0%, 50%, 100% {
+        opacity: 1;
+    }
+    25%, 75% {
+        opacity: 0;
+    }
+}
+.navbar {
+    background-color: #1f2124; /* Rojo */
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.add-language-form, .right, .left {
+    margin: 20px;
+}
+
+
+h2 {
+    color: #ff3333;
+    text-shadow: 2px 2px 4px rgba(255, 51, 51, 0.8); /* Sombra con iluminación */
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+
+.button-24 {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Nunito', 'Roboto', 'Proxima Nova', sans-serif; /* Agregué comillas y cambié el orden de las tipografías */
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+}
+
+.button-24:hover,
+.button-24:active {
+    background-color: initial;
+    background-position: 0 0;
+    color: #FF4742;
+}
+
+.button-24:active {
+    opacity: .5;
+}
+input[type="text"] {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    color: #FFFFFF;
+    font-family: 'Nunito', sans-serif; /* Puedes ajustar la fuente según tus preferencias */
+    font-size: 16px;
+    padding: 12px 14px;
+    margin-bottom: 10px; /* Espaciado inferior */
+}
+
+/* Estilo para elementos select */
+select {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    color: #FFFFFF;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+}
+
+/* Estilo para área de subir imagen */
+input[type="file"] {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    color: #FFFFFF;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+}
+
+
+@keyframes customBlink {
+    0% {
+        opacity: 1;
+    }
+    5% {
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    20% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    30% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+    45% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    55% {
+        opacity: 1;
+    }
+    65% {
+        opacity: 0;
+    }
+    70% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0;
+    }
+    80% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 0;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+img {
+    animation: customBlink 2s infinite; /* Ajusta la duración según tus preferencias */
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="left">
+            <a href="http://127.0.0.1:5000/" id="home-btn">Home</a>
+        </div>
+        <div class="right">
+            <form method="post" action="{{ url_for('root') }}">
+                <label for="idioma_code">idioma:</label>
+                <select name="idioma_code" id="idioma_code">
+                    {% for idioma in idiomas %}
+                        <option value="{{ idioma.code }}">{{ idioma.palabra }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Traducir">
+            </form>
+        </div>
+    </div>
+    <div id="image-container">
+        {% if current_image %}
+            <div>
+                <img src="data:image/jpeg;base64,{{ current_image.base64_data }}" alt="Image {{ current_image.image_id }}">
+                <p>ID: {{ current_image.image_id }}</p>
+                
+                <form action="/delete_image" method="post">
+                    <input type="hidden" name="image_id" value="{{ current_image.image_id }}">
+                    <input type="hidden" name="image_index" value="{{ current_image_index }}">
+                    <button type="submit", class="button-24">Eliminar </button>
+                </form>
+            </div>
+        {% else %}
+            <p>No hay imágenes disponibles.</p>
+        {% endif %}
+    </div>
+
+    <form action="/root" method="get">
+        <input type="hidden" name="index" value="{{ current_image_index - 1 }}">
+        <button type="submit" {% if current_image_index == 0 %}disabled{% endif %}, class="button-24">Imagen Anterior</button>
+    </form>
+
+    <form action="/root" method="get">
+        <input type="hidden" name="index" value="{{ current_image_index + 1 }}">
+        <button type="submit" {% if current_image_index == (all_images|length - 1) %}disabled{% endif %}, class="button-24">Siguiente Imagen</button>
+    </form>
+    <h1>{{ palabra_traducida or palabra_original }}</h1>
+    
+    <div class="add-language-form">
+        <h2>Agregar idioma</h2>
+        <form method="POST" action="{{ url_for('add_language') }}" enctype="multipart/form-data">
+            <label for="palabra">Palabra:</label>
+            <input type="text" id="palabra" name="palabra" required>
+            <br>
+            <label for="code">Código:</label>
+            <input type="text" id="code" name="code" required>
+            <br>
+            <input type="submit" value="Agregar Idioma", class="button-24">
+        </form>
+    </div>
+
+    <div class="right">
+        <h2>Eliminar idioma</h2>
+        <form method="post" action="{{ url_for('delete_language') }}">
+            <label for="idioma_code">Selecciona un idioma para eliminar:</label>
+            <select name="idioma_code" id="idioma_code">
+                {% for idioma in idiomas %}
+                    <option value="{{ idioma.code }}">{{ idioma.palabra }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Eliminar Idioma", class="button-24">
+        </form>
+    </div>
+
+    <div class="left">
+        <h2>Agregar imagen</h2>
+        <form method="POST" action="{{ url_for('add_img') }}" enctype="multipart/form-data">
+            <label for="image">Imagen:</label>
+            <input type="file" id="image" name="image" accept="image/*">
+            <br>
+            <input type="submit" value="Agregar Imagen", class="button-24">
+        </form>
+    </div>
+</body>
+</html>

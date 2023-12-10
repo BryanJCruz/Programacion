@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="left">
+            <a href="http://127.0.0.1:5000/" id="home-btn">Home</a>
+        </div>
+        <div class="right">
+            <form method="post" action="{{ url_for('menu') }}">
+                <label for="idioma_code">idioma:</label>
+                <select name="idioma_code" id="idioma_code">
+                    {% for idioma in idiomas %}
+                        <option value="{{ idioma.code }}">{{ idioma.palabra }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Traducir">
+            </form>
+        </div>
+    </div>
+   <img src="data:image/jpeg;base64,{{ current_image.base64_data }}" alt="Image {{ current_image.image_id }}">
+    <h1>{{ palabra_traducida or palabra_original }}</h1>
+    <img src="data:image/jpeg;base64,{{ current_image.base64_data }}" alt="Image {{ current_image.image_id }}">
+</body>
+</html>
