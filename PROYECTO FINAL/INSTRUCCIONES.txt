@@ -1,0 +1,11 @@
+para correr correstamente el proyecto debe tener 3 cosas escenciales 
+
+1 debe importar la base de datos lenguajes a mysql
+ 	|
+ 	idioma # esto almancenara las opciones de iciomas para traducir el hello world
+ 	|
+ 	usuario # en este apartado estara solo la persona con acceso a editar idiomas,agregar imagenes,eliminar,etc solo esta pensado para la primera persona de la base de datos con  ID 1 , esta solo podra ser ingresada o actualizada por el administrador e la base de datos nadie mas tendra manera de actualizar el usuario root
+ 
+ 2 una base de datos mongodb normalmente solo hay que actualizar la direccion del mongodb dentro del imagehanlder "manejador de imagenes" este es el responsable de las funciones con las imagenes y la coneccion con mongod ! solo se debe actualizar la direccion del mongodb dentro del codigo imagehandler.py! el resto es automatico
+ 
+ 3 tener instalado todas las librerias necesarias para el correctofuncionamiento del codigo 
